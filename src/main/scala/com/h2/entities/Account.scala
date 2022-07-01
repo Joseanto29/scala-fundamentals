@@ -3,7 +3,7 @@ package main.scala.com.h2.entities
 import java.util.UUID
 
 import main.scala.com.h2.entities.Dollars.Zero
-
+/**
 sealed trait TransactionType
 case object In extends TransactionType
 case object Out extends TransactionType
@@ -43,7 +43,7 @@ class DepositsAccount(val customer: Customer,
     balance -= dollars
     transactions = transactions :+ Transaction(customer, dollars, Out, category)
     println(s"Withdrawn $dollars from ${this.toString}")
-  }
+  }%
 
   override def getBalance: Dollars = balance
 
@@ -72,4 +72,23 @@ class LendingAccount(val customer: Customer,
   override def getBalance: Dollars = balance
 
   override def toString = s"$customer with $product has balance of $balance"
+}*/
+
+class Account(c: Customer, p: Product, b: Int){
+  val customer: Customer = c
+  val product: Product = p
+  private var balance: Int = b
 }
+
+
+def deposit(amount: Int): Unit = {
+println(s"Depositing $amount to $customer account")
+balance += amount
+  }
+
+def withdraw(amount: Int): Unit = {
+println(s"Withdrawing $amount to $customer account")
+balance -= amount
+  }
+
+override def toString = s"$customer with $product has remaining balance of $balance"
